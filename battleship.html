@@ -10,28 +10,35 @@
             }
             #board {
                 position: relative;
-                width: 1024px;
-                height: 863px;
+                /*width: 1024px;
+                height: 863px;*/
+                width: 921px;
+                height: 776px;
                 margin: auto;
                 background: url("media/board.jpg") no-repeat;
+                background-size: contain;
             }
             #messageArea {
                 position: absolute; /* relative to parent div */
                 top: 0px;
                 left: 0px;
                 margin: auto;
-                color: rgba(83, 175, 19, .5);
-                font-size: 1.5em;
+                color: rgba(83, 175, 19, .6);
+                font-size: 2em;
             }
             table {
                 position: absolute;
-                left: 173px; /* these align w/ game img grid */
-                top: 98px;
+                /*left: 173px;
+                top: 98px;*/
+                left: 155px;
+                top: 88px;
                 border-spacing: 0px;
             }
             td {
-                width: 94px;
-                height: 96px;
+                /*width: 94px;
+                height: 96px;*/
+                width: 84px;
+                height: 85px;
             }
             td:hover {
                 background-color: rgba(83, 175, 19, .5);
@@ -66,7 +73,7 @@
 
             <table>
                 <tr>
-                    <td id="00" class="hit"></td><td id="01"></td><td id="02"></td><td id="03"></td><td id="04"></td><td id="05"></td><td id="06"></td>
+                    <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td><td id="04"></td><td id="05"></td><td id="06"></td>
                 </tr>
                 <tr>
                     <td id="10"></td><td id="11"></td><td id="12"></td><td id="13"></td><td id="14"></td><td id="15"></td><td id="16"></td>
