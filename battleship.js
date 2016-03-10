@@ -6,7 +6,7 @@ MODEL, VIEW, CONTROLLER OBJECT IMPLEMENT THE GAME
 
 /*
 =============================================================
-SIMPLE CHANGES 
+SIMPLE CHANGES
 TODO board shrink to 90% size so fits on screens
 TODO put form, mssgs etc all on right side
 TODO welcome message at start
@@ -29,7 +29,6 @@ function init() {
     // fire with keypress of return
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
-
     model.generateShipLocations();
 } // end init
 
