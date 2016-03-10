@@ -24,6 +24,7 @@ window.onload = init;
 
 // init assignes an event handler for fire button
 function init() {
+    view.displayMessage("Welcome to your battle station. Fire when ready...")
     var fire = document.getElementById('fireButton');
     fire.onclick = handleFireButton; // assign handler don't call it
     // fire with keypress of return
@@ -40,8 +41,6 @@ function handleFireButton() {
     var guess = guessInput.value;
     var guessUpperCase = guess.toUpperCase(); // a1 > A1 etc.
     console.log(guessUpperCase);
-
-
     // call code to process input value in controller
     controller.processGuess(guessUpperCase);
     // clear input field

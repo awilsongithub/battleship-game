@@ -1,12 +1,20 @@
+<!-- NOTES TO SELF
+form has no action or submit since not sending to server
+
+
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
         <meta charset="utf-8">
         <title>Battleship</title>
 
         <style media="screen">
             body {
                 background-color: black;
+                font-family: 'Special Elite', cursive;
             }
             #board {
                 position: relative;
@@ -19,11 +27,13 @@
                 background-size: contain;
             }
             #messageArea {
-                position: absolute; /* relative to parent div */
+                /* absolute is relative to parent div */
+                position: absolute;
                 top: 0px;
-                left: 0px;
+                left: 128px;
+                width: 455px;
                 margin: auto;
-                color: rgba(83, 175, 19, .6);
+                color: rgba(83, 175, 19, .9);
                 font-size: 2em;
             }
             table {
@@ -45,16 +55,25 @@
             }
             form {
                 position: absolute;
-                bottom: 0px;
-                right: 0px;
+                /*bottom: 0px;
+                right: 0px;*/
+                top: 0px;
+                right: 160px;
                 padding: 15px;
-                width: 248px; /* align with grid column */
+                width: 149px; /* align with grid column */
                 background-color: rgb(83, 175, 19);
             }
             form input {
                 background-color: rgb(152, 207, 113);
                 border-color: rgb(83, 175, 19);
-                font-size: 1em;
+                font-size: 1.5em;
+                width: 60px;
+                margin-right: 5px;
+                font-family: 'Special Elite', cursive;
+            }
+            #fireButton {
+                font-family: 'Special Elite', cursive;
+                width: 65px;
             }
             .hit {
                 background: url("media/ship.png") no-repeat center center;
@@ -67,9 +86,14 @@
         </style>
     </head>
     <body>
+        <!-- ORIGINAL GAME LAYOUT -->
         <div id="board">
 
             <div id="messageArea"></div>
+            <form>
+                <input type="text" id="guessInput" placeholder="A0">
+                <input type="button" id="fireButton" value="Fire!">
+            </form>
 
             <table>
                 <tr>
@@ -95,13 +119,16 @@
                 </tr>
             </table>
 
-            <form>
-                <!-- form has no "action" and no "submit" since we aren't sending to a server -->
-                <input type="text" id="guessInput" placeholder="A0">
-                <input type="button" id="fireButton" value="Fire!">
-            </form>
+
 
         </div>
+
+
+
+
+
+
+
         <script type="text/javascript" src="battleship.js"></script>
     </body>
 </html>
