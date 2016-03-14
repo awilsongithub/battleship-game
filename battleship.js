@@ -25,6 +25,7 @@ window.onload = init;
 // init assignes an event handler for fire button
 function init() {
     view.displayMessage("Welcome to your battle station. Fire when ready...")
+    // backgroundSound();
     var fire = document.getElementById('fireButton');
     fire.onclick = handleFireButton; // assign handler don't call it
     // fire with keypress of return
@@ -32,6 +33,17 @@ function init() {
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
     model.generateShipLocations();
 } // end init
+
+// sound effect functions
+function fireAndHit() {
+    document.getElementById("hit-sound").play();
+}
+function fireAndMiss() {
+    document.getElementById("miss-sound").play();
+}
+function backgroundSound() { // called on load
+    document.getElementById("background-sound").play();
+}
 
 
 // get user input value and pass to controller
@@ -103,8 +115,10 @@ var model = {
             // if hit
             if (index >= 0) {
                 ship.hits[index]= "hit";
+                fireAndHit(); // sound
                 view.displayHit(guess);
                 view.displayMessage("HIT!");
+
                 // if ship is sunk
                 if (this.isSunk(ship)) {
                     this.shipsSunk++;
@@ -117,6 +131,7 @@ var model = {
         // if miss
         view.displayMiss(guess);
         view.displayMessage("You missed.");
+        fireAndMiss();
         return false;
 
     }, // end fire

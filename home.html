@@ -1,7 +1,6 @@
 <!-- NOTES TO SELF
 form has no action or submit since not sending to server
 
-
  -->
 
 <!DOCTYPE html>
@@ -82,11 +81,15 @@ form has no action or submit since not sending to server
                 background: url("media/miss.png") no-repeat center center;
             }
 
-
         </style>
     </head>
     <body>
-        <!-- ORIGINAL GAME LAYOUT -->
+        <!-- AUDIO ADDITIONS PER THIS TUTORIAL: http://www.onlywebpro.com/2012/03/10/html5-game-development-adding-sound-effects/ -->
+        <audio id="background-sound" src="media/sonar-background.mp3" loop="true" autoplay="true"></audio>
+        <audio id="miss-sound" src="media/miss_hiss.wav"></audio>
+        <audio id="hit-sound" src="media/hit.mp3"></audio>
+
+
         <div id="board">
 
             <div id="messageArea"></div>
@@ -120,13 +123,7 @@ form has no action or submit since not sending to server
             </table>
 
 
-
         </div>
-
-
-
-
-
 
 
         <script type="text/javascript" src="battleship.js"></script>
