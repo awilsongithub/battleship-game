@@ -122,7 +122,7 @@ var model = {
                 // if ship is sunk
                 if (this.isSunk(ship)) {
                     this.shipsSunk++;
-                    view.displayMessage("You sunk my battleship!");
+                    view.displayMessage("You sunk my battle-banana!");
                 }
                 return true;
             }
@@ -238,7 +238,7 @@ var controller = {
 
             // check for game over
             if (hit && model.shipsSunk === model.numShips) {
-                view.displayMessage("You sunk all my battleships in " + this.guesses + " guesses!");
+                view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
             }
         }
     },
