@@ -44,6 +44,9 @@ function fireAndMiss() {
 function backgroundSound() { // called on load
     document.getElementById("background-sound").play();
 }
+function shipGotSunk() {
+    document.getElementById("monkey-lost-ship").play();
+}
 
 
 // get user input value and pass to controller
@@ -123,6 +126,7 @@ var model = {
                 if (this.isSunk(ship)) {
                     this.shipsSunk++;
                     view.displayMessage("You sunk my battle-banana!");
+                    shipGotSunk(); // plays monkey sound
                 }
                 return true;
             }
@@ -239,6 +243,7 @@ var controller = {
             // check for game over
             if (hit && model.shipsSunk === model.numShips) {
                 view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
+                shipGotSunk(); // plays monkey sound
             }
         }
     },
