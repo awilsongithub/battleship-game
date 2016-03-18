@@ -1,0 +1,81 @@
+
+body {
+    background-color: black;
+    font-family: 'Special Elite', cursive;
+}
+#board {
+    position: relative;
+    /*width: 1024px;
+    height: 863px;*/
+    width: 921px;
+    height: 776px;
+    margin: auto;
+    background: url("media/board.jpg") no-repeat;
+    background-size: contain;
+}
+#messageArea {
+    /* absolute is relative to parent div */
+    position: absolute;
+    top: 0px;
+    left: 128px;
+    width: 455px;
+    margin: auto;
+    color: rgba(83, 175, 19, .9);
+    font-size: 2em;
+}
+table {
+    position: absolute;
+    /*left: 173px;
+    top: 98px;*/
+    left: 155px;
+    top: 88px;
+    border-spacing: 0px;
+}
+#author {
+    color: rgba(83, 175, 19, .6);
+    position: absolute;
+    bottom: 0px;
+    right: 160px;
+    font-size: .75em;
+}
+#author a {
+    color: rgba(83, 175, 19, .6);
+    text-decoration: none;
+}
+td {
+    /*width: 94px;
+    height: 96px;*/
+    width: 84px;
+    height: 85px;
+}
+td:hover {
+    background-color: rgba(83, 175, 19, .5);
+}
+form {
+    position: absolute;
+    /*bottom: 0px;
+    right: 0px;*/
+    top: 0px;
+    right: 160px;
+    padding: 15px;
+    width: 149px; /* align with grid column */
+    background-color: rgb(83, 175, 19);
+}
+form input {
+    background-color: rgb(152, 207, 113);
+    border-color: rgb(83, 175, 19);
+    font-size: 1.5em;
+    width: 60px;
+    margin-right: 5px;
+    font-family: 'Special Elite', cursive;
+}
+#fireButton {
+    font-family: 'Special Elite', cursive;
+    width: 65px;
+}
+.hit {
+    background: url("media/banana.png") no-repeat center center;
+}
+.miss {
+    background: url("media/miss.png") no-repeat center center;
+}

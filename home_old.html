@@ -1,0 +1,145 @@
+<!-- NOTES TO SELF
+form has no action or submit since not sending to server
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+        <meta charset="utf-8">
+        <title>Battleship</title>
+
+        <style media="screen">
+            body {
+                background-color: black;
+                font-family: 'Special Elite', cursive;
+            }
+            #board {
+                position: relative;
+                /*width: 1024px;
+                height: 863px;*/
+                width: 921px;
+                height: 776px;
+                margin: auto;
+                background: url("media/board.jpg") no-repeat;
+                background-size: contain;
+            }
+            #messageArea {
+                /* absolute is relative to parent div */
+                position: absolute;
+                top: 0px;
+                left: 128px;
+                width: 455px;
+                margin: auto;
+                color: rgba(83, 175, 19, .9);
+                font-size: 2em;
+            }
+            table {
+                position: absolute;
+                /*left: 173px;
+                top: 98px;*/
+                left: 155px;
+                top: 88px;
+                border-spacing: 0px;
+            }
+            #author {
+                color: rgba(83, 175, 19, .6);
+                position: absolute;
+                bottom: 0px;
+                right: 160px;
+                font-size: .75em;
+            }
+            #author a {
+                color: rgba(83, 175, 19, .6);
+                text-decoration: none;
+            }
+            td {
+                /*width: 94px;
+                height: 96px;*/
+                width: 84px;
+                height: 85px;
+            }
+            td:hover {
+                background-color: rgba(83, 175, 19, .5);
+            }
+            form {
+                position: absolute;
+                /*bottom: 0px;
+                right: 0px;*/
+                top: 0px;
+                right: 160px;
+                padding: 15px;
+                width: 149px; /* align with grid column */
+                background-color: rgb(83, 175, 19);
+            }
+            form input {
+                background-color: rgb(152, 207, 113);
+                border-color: rgb(83, 175, 19);
+                font-size: 1.5em;
+                width: 60px;
+                margin-right: 5px;
+                font-family: 'Special Elite', cursive;
+            }
+            #fireButton {
+                font-family: 'Special Elite', cursive;
+                width: 65px;
+            }
+            .hit {
+                background: url("media/banana.png") no-repeat center center;
+            }
+            .miss {
+                background: url("media/miss.png") no-repeat center center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <!-- AUDIO ADDITIONS PER THIS TUTORIAL: http://www.onlywebpro.com/2012/03/10/html5-game-development-adding-sound-effects/ -->
+        <audio id="background-sound" src="media/sonar-background.mp3" loop="true" autoplay="true"></audio>
+        <audio id="miss-sound" src="media/miss_hiss.wav"></audio>
+        <audio id="hit-sound" src="media/hit.mp3"></audio>
+        <audio id="monkey-lost-ship" src="media/gorilla-sound.wav"></audio>
+
+
+        <div id="board">
+
+            <div id="messageArea"></div>
+            <form id="form">
+                <input type="text" id="guessInput" placeholder="A0">
+                <input type="button" id="fireButton" value="Fire!">
+            </form>
+
+            <table>
+                <tr>
+                    <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td><td id="04"></td><td id="05"></td><td id="06"></td>
+                </tr>
+                <tr>
+                    <td id="10"></td><td id="11"></td><td id="12"></td><td id="13"></td><td id="14"></td><td id="15"></td><td id="16"></td>
+                </tr>
+                <tr>
+                    <td id="20"></td><td id="21"></td><td id="22"></td><td id="23"></td><td id="24"></td><td id="25"></td><td id="26"></td>
+                </tr>
+                <tr>
+                    <td id="30"></td><td id="31"></td><td id="32"></td><td id="33"></td><td id="34"></td><td id="35"></td><td id="36"></td>
+                </tr>
+                <tr>
+                    <td id="40"></td><td id="41"></td><td id="42"></td><td id="43"></td><td id="44"></td><td id="45"></td><td id="46"></td>
+                </tr>
+                <tr>
+                    <td id="50"></td><td id="51"></td><td id="52"></td><td id="53"></td><td id="54"></td><td id="55"></td><td id="56"></td>
+                </tr>
+                <tr>
+                    <td id="60"></td><td id="61"></td><td id="62"></td><td id="63"></td><td id="64"></td><td id="65"></td><td id="66"></td>
+                </tr>
+            </table>
+
+            <p id="author">Game by <a href="http://adamwilson.online/" target="_blank">Adam Wilson</a> 2016</p>
+
+
+        </div>
+
+
+        <script type="text/javascript" src="battleship.js"></script>
+    </body>
+</html>

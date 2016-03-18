@@ -13,9 +13,20 @@ TODO welcome message at start
 TODO display guesses and mssg that lower # score better
 TODO sound effects for hit, miss, ongoing, sunk, sunk all
 TODO name battleships, display name upon sunk with modal for info about it
+TODO play again button uses document.location.reload() reload page
 
 NEW VERSIONS OF GAME (also see trello board ideas)
 TODO make it a word game. see experimental section at bottom....
+
+CLICK ON CELL TO FIRE CODE
+    assign .onclick handler to each td
+        iterate over 0-6 row,
+        for each row, iterate over 0-6 column and assign
+    the eventObj is then the td element and is passed to handler
+        assign eventObj.target to a variable
+        variable id is the guess argument passed to processGuess
+    existing code takes it from there
+
 =============================================================
 */
 
@@ -77,6 +88,7 @@ var view = {
     displayMessage: function(msg) {
         var messageArea = document.getElementById("messageArea");
         messageArea.innerHTML = msg;
+        // couldv'e also used createTextNode and appendChild
     },
     displayHit: function(location) {
         var cell = document.getElementById(location);
@@ -244,6 +256,9 @@ var controller = {
             if (hit && model.shipsSunk === model.numShips) {
                 view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
                 shipGotSunk(); // plays monkey sound
+
+                // showPlayAgainButton function called here
+
             }
         }
     },
