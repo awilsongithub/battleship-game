@@ -51,8 +51,10 @@ table {
     position: absolute;
     /*left: 173px;
     top: 98px;*/
-    left: 155px;
-    top: 88px;
+    /*left: 155px;
+    top: 88px;*/
+    left: 134px;
+    top: 75px;
     border-spacing: 0px;
 }
 #author {
@@ -69,8 +71,10 @@ table {
 td {
     /*width: 94px;
     height: 96px;*/
-    width: 84px;
-    height: 85px;
+    /*width: 84px;
+    height: 85px;*/
+    width: 74px;
+    height: 75px;
 }
 td:hover {
     background-color: rgba(83, 175, 19, .5);

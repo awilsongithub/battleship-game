@@ -45,6 +45,17 @@ function init() {
     model.generateShipLocations();
 } // end init
 
+
+
+
+
+
+
+
+
+
+
+
 // sound effect functions
 function fireAndHit() {
     document.getElementById("hit-sound").play();
