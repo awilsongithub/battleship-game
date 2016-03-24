@@ -7,10 +7,13 @@ body {
     position: relative;
     /*width: 1024px;
     height: 863px;*/
+
+
+
     width: 921px;
     height: 776px;
     margin: auto;
-    background: url("media/board.jpg") no-repeat;
+    background: url("../media/board.jpg") no-repeat;
     background-size: contain;
 }
 #messageArea {
@@ -74,8 +77,8 @@ form input {
     width: 65px;
 }
 .hit {
-    background: url("media/banana.png") no-repeat center center;
+    background: url("../media/banana.png") no-repeat center center;
 }
 .miss {
-    background: url("media/miss.png") no-repeat center center;
+    background: url("../media/miss.png") no-repeat center center;
 }

@@ -1,14 +1,22 @@
+/*downloaded font per these instructions: http://stackoverflow.com/questions/7961721/how-do-i-install-a-custom-font-on-an-html-site*/
+/*@font-face {
+    font-family: 'white-rabbit'; src: url('../media/white-rabbit/whitrabt.ttf');
+}*/
 
 body {
     background-color: black;
     font-family: 'Special Elite', cursive;
+    /*font-family: 'white-rabbit', arial, sans-serif;*/
+    /*font-family: 'Press Start 2P', cursive;*/
 }
 #board {
     position: relative;
     /*width: 1024px;
     height: 863px;*/
-    width: 921px;
-    height: 776px;
+    /*width: 921px;
+    height: 776px;*/
+    width: 793.8px;
+    height: 668.8px;
     margin: auto;
     background: url("../media/board.jpg") no-repeat;
     background-size: contain;
@@ -23,16 +31,22 @@ body {
     left: 128px;
     width: 455px;
     margin: auto;*/
-    height: 300px;
     color: rgba(83, 175, 19, .9);
     font-size: 2em;
-    padding-top: 88px;  /* align with top of game board */
+    line-height: 110%;
+    /*background: url('../media/parchment.jpg')*/
+    background: url('../media/monitor.png') no-repeat;
+    background-size: cover;
+    height: 140px;
+    border-style: inset;
+    border-color: grey;
+    padding: 15px;
 }
-#missiles-remaining {
+/*#missiles-remaining {
     height: 200px;
     color: rgba(83, 175, 19, .9);
     font-size: 2em;
-}
+}*/
 table {
     position: absolute;
     /*left: 173px;
@@ -61,28 +75,57 @@ td {
 td:hover {
     background-color: rgba(83, 175, 19, .5);
 }
+#formArea {
+
+}
 #form {
     /*position: absolute;*/
     /*top: 0px;
     right: 160px;*/
     padding: 15px;
-    width: 100%; 
-    background-color: rgb(83, 175, 19);
+    width: 100%;
+    /*background-color: rgb(83, 175, 19);*/
+    /*background: url('../media/metal-plate_no_screws.jpeg') no-repeat;
+    background-size: cover;*/
+    background-color: black;
+    border-style: outset;
+    border-width: 3px;
+    border-radius: 2px;
+    border-color: grey;
 }
+
+.darkened-image {
+   background: rgba(70, 72, 82, 0.3);
+}
+
 #guessInput {
-    background-color: rgb(152, 207, 113);
-    border-color: rgb(83, 175, 19);
+    /*background-color: rgb(152, 207, 113);*/
+    background: url('../media/monitor.png') no-repeat;
+    background-size: cover;
+    /*border-color: rgb(83, 175, 19);*/
+    border-color: grey;
+    border-style: inset;
+    border-width: 2px;
     font-size: 1.5em;
-    width: 180px;
+    /*width: 180px;*/
     margin-right: 5px;
+    margin-bottom: 10px;
     font-family: 'Special Elite', cursive;
-    display: inline-block;
+    color: rgba(83, 175, 19, .9);
+    /*display: inline-block;*/
 }
 #fireButton {
     font-family: 'Special Elite', cursive;
-    width: 80px;
-    background-color: rgb(152, 207, 113);
+    /*width: 80px;*/
+    /*background-color: rgb(152, 207, 113);*/
+    background: url('../media/fire.jpg') no-repeat;
+    background-size: cover;
     font-size: 1.5em;
+    border-style: outset;
+    border-color: grey;
+    border-width: 2px;
+    width: 90px;
+    height: 50px;
 }
 .hit {
     background: url("../media/banana.png") no-repeat center center;
