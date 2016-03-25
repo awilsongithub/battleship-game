@@ -42,9 +42,24 @@ function init() {
     // fire with keypress of return
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
+
+    var instructionsButton = document.getElementById('show-instructions');
+    instructionsButton.onclick = showInstructions; // handler
+
     model.generateShipLocations();
 } // end init
 
+
+
+function showInstructions() {
+    var backdrop = document.getElementById('jumbotron');
+    var headingElement = document.createElement('h1');
+    var headingText = document.createTextNode("Here's the deal");
+    headingElement.appendChild(headingText);
+    backdrop.appendChild(headingElement);
+
+
+}
 
 
 

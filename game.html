@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- FROM BOOTSTRAP TEMPLATE -->
+        <meta charset="UTF-8">
+        <!-- Use latest and greatest rendering engine -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- scale 1 (100%) prevents shrinking -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Minified Bootstrap CSS FROM CDN. No optional theme since we want flatter look -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- FROM BATTLE BANANA HOME -->
+        <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+        <!-- <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'> -->
+        <link rel="stylesheet" href="css/style2.css">
+        <title>BattleBanana</title>
+    </head>
+
+    <body>
+
+        <!-- AUDIO ADDITIONS PER THIS TUTORIAL: http://www.onlywebpro.com/2012/03/10/html5-game-development-adding-sound-effects/ -->
+        <audio id="background-sound" src="media/sonar-background.mp3" loop="true" autoplay="true"></audio>
+        <audio id="miss-sound" src="media/miss_hiss.wav"></audio>
+        <audio id="hit-sound" src="media/hit.mp3"></audio>
+        <audio id="monkey-lost-ship" src="media/gorilla-sound.wav"></audio>
+
+
+        <!--    GRID    -->
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="board">
+                        <table>
+                            <tr>
+                                <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td><td id="04"></td><td id="05"></td><td id="06"></td>
+                            </tr>
+                            <tr>
+                                <td id="10"></td><td id="11"></td><td id="12"></td><td id="13"></td><td id="14"></td><td id="15"></td><td id="16"></td>
+                            </tr>
+                            <tr>
+                                <td id="20"></td><td id="21"></td><td id="22"></td><td id="23"></td><td id="24"></td><td id="25"></td><td id="26"></td>
+                            </tr>
+                            <tr>
+                                <td id="30"></td><td id="31"></td><td id="32"></td><td id="33"></td><td id="34"></td><td id="35"></td><td id="36"></td>
+                            </tr>
+                            <tr>
+                                <td id="40"></td><td id="41"></td><td id="42"></td><td id="43"></td><td id="44"></td><td id="45"></td><td id="46"></td>
+                            </tr>
+                            <tr>
+                                <td id="50"></td><td id="51"></td><td id="52"></td><td id="53"></td><td id="54"></td><td id="55"></td><td id="56"></td>
+                            </tr>
+                            <tr>
+                                <td id="60"></td><td id="61"></td><td id="62"></td><td id="63"></td><td id="64"></td><td id="65"></td><td id="66"></td>
+                            </tr>
+                        </table>
+                        <p id="author">Game by <a href="http://adamwilson.online/" target="_blank">Adam Wilson</a> 2016</p>
+                    </div> <!-- end board -->
+                </div>
+            </div>
+
+            <div class="row" id='control-panel'>
+
+                <div class="col-lg-4 col-lg-offset-3 col-md-4 col-md-offset-3 col-sm-6 col-sm-offset-2 col-xs-6 col-xs-offset-2" id="messageArea">
+                    <p>Welcome to BattleBanana</p>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col col-sm-3 col-xs-3" id="formArea">
+                    <form id="form" class='darkened-image'>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="guessInput" placeholder="a0">
+                            <input type="button" class="btn btn-default" id="fireButton" value="">
+                        </div>
+                    </form>
+                </div>
+
+            </div> <!-- end row -->
+
+
+        </div> <!-- end container -->
+
+        <script type="text/javascript" src="battleship.js"></script> -->
+    </body>
+</html>
