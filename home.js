@@ -2,11 +2,14 @@
 // onload triggers init() to initiate execution based on user input
 window.onload = function() {
 
+    backgroundSound();
+
     var instructionsButton = document.getElementById('show-instructions');
     instructionsButton.onclick = showInstructions; // handler
 
-    backgroundSound();
-
+    var startGameButton = document.getElementById('start-game-button');
+    console.log(startGameButton);
+    startGameButton.onclick = startGameSetTimeout;
 }
 
 function showInstructions() {
@@ -27,4 +30,21 @@ function showInstructions() {
 
 function backgroundSound() { // called on load
     document.getElementById("background-sound").play();
+}
+
+// start game on click of play: play start tune
+// and then set timeout for 4 seconds and
+// location.assign to game screen
+function startGameSetTimeout() {
+    document.getElementById("background-sound").pause();
+    document.getElementById('start-game').play();
+    var headingText = document.getElementById('home-heading');
+    headingText.innerHTML = 'loading...';
+    document.getElementById('home-p').innerHTML = '';
+    window.setTimeout( startGameNow, 4500);
+}
+
+function startGameNow() {
+    // alert('timeout in 4 test');
+    location.assign('file:///Users/adamwilson/dragons/battleship-game/game.html')
 }

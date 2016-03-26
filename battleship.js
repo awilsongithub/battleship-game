@@ -43,14 +43,10 @@ function init() {
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
 
-    var instructionsButton = document.getElementById('show-instructions');
-    instructionsButton.onclick = showInstructions; // handler
-
     model.generateShipLocations();
 } // end init
 
-
-
+// show instructions on home welcome page with buttons to proceed to play
 function showInstructions() {
     var backdrop = document.getElementById('jumbotron');
     var headingElement = document.createElement('h1');
@@ -61,7 +57,19 @@ function showInstructions() {
 
 }
 
+function gameOver() {
+    // play monkey sounds
+    document.getElementById("background-sound").pause();
+    document.getElementById("win-game").play();
+    // in 2 secs go to game over screen
+    // home customized or new page
+    window.setTimeout(goToGameOverScreen, 6000);
 
+}
+
+function goToGameOverScreen() {
+    location.assign('file:///Users/adamwilson/dragons/battleship-game/home.html');
+}
 
 
 
@@ -276,14 +284,31 @@ var controller = {
         if (location) {
             this.guesses++;
             console.log(this.guesses);
-            var hit = model.fire(location); // returns true if a hit
+
+            // returns true if a hit
+            var hit = model.fire(location);
 
             // check for game over
             if (hit && model.shipsSunk === model.numShips) {
                 view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
-                shipGotSunk(); // plays monkey sound
 
-                // showPlayAgainButton function called here
+                // go to home page, display message with play, instr, var buttons
+                // window.open('home.html');
+                gameOver();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
         }
