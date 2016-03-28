@@ -57,20 +57,27 @@ function showInstructions() {
 
 }
 
-function gameOver() {
+function gameOver(guesses) {
     // play monkey sounds
     document.getElementById("background-sound").pause();
     document.getElementById("win-game").play();
 
     console.log(guesses);
-    view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
+    view.displayMessage("You sunk all my battle-bananas in " + guesses + " guesses!");
     // in 2 secs go to game over screen
     // home customized or new page
-    window.setTimeout(goToGameOverScreen, 6000);
+    window.setTimeout(goToGameOverScreen, 8000);
 }
 
 function goToGameOverScreen() {
-    location.assign('home.html');
+    // TODO this gave error " Not allowed to load local resource: file:///Users/adamwilson/dragons/battleship-game/home.html "
+    // location.assign('home.html');
+
+    // try to provide absolute url?:
+    location.assign('http://battlebanana.herokuapp.com/home.html');
+
+    // or try instead to simply reload current page with
+    // location.reload(true);
 }
 
 // sound effect functions
@@ -286,7 +293,7 @@ var controller = {
             if (hit && model.shipsSunk === model.numShips) {
                 // go to home page, display message with play, instr, var buttons
                 // window.open('home.html');
-                gameOver();
+                gameOver(this.guesses);
 
             }
         }
