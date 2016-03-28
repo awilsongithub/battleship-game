@@ -35,7 +35,7 @@ window.onload = init;
 
 // init assignes an event handler for fire button
 function init() {
-    view.displayMessage("Welcome to your battle station. Fire when ready...")
+    view.displayMessage("Enter a location and click 'FIRE' or press Enter.")
     // backgroundSound();
     var fire = document.getElementById('fireButton');
     fire.onclick = handleFireButton; // assign handler don't call it
@@ -61,23 +61,17 @@ function gameOver() {
     // play monkey sounds
     document.getElementById("background-sound").pause();
     document.getElementById("win-game").play();
+
+    console.log(guesses);
+    view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
     // in 2 secs go to game over screen
     // home customized or new page
     window.setTimeout(goToGameOverScreen, 6000);
-
 }
 
 function goToGameOverScreen() {
-    location.assign('file:///Users/adamwilson/dragons/battleship-game/home.html');
+    location.assign('home.html');
 }
-
-
-
-
-
-
-
-
 
 // sound effect functions
 function fireAndHit() {
@@ -290,25 +284,9 @@ var controller = {
 
             // check for game over
             if (hit && model.shipsSunk === model.numShips) {
-                view.displayMessage("You sunk all my battle-bananas in " + this.guesses + " guesses!");
-
                 // go to home page, display message with play, instr, var buttons
                 // window.open('home.html');
                 gameOver();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
         }

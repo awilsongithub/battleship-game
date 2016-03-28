@@ -18,8 +18,7 @@ function showInstructions() {
     // homeHeading.innerHTML = "Here's The Deal";
     console.log('showInstructions called');
     document.getElementById('home-heading').innerHTML = "How To Play:";
-    document.getElementById('home-p').innerHTML = "3 ships are hidden somewhere in the game board. Each ship is 3 squares long. Your mission: Fire and hit each square of a ship to sink it. Sink all 3 ships in as few plays as possible. Ships are horizontal or vertical but not diagonal. Aim by entering a game square's coordinates (ie a1, a2, b3...) then type Enter or click the FIRE button.";
-
+    document.getElementById('home-p').innerHTML = "Ready, Aim, Fire! 9 items are hidden on the game board grid. Enter a grid square location and fire to uncover them all in as few plays as possible. Items are hidden in groups of 3. Type a location and click the FIRE button or hit Enter to fire";
 
     // var headingElement = document.createElement('H1');
     // var headingText = document.createTextNode("Here's the deal");
@@ -46,5 +45,6 @@ function startGameSetTimeout() {
 
 function startGameNow() {
     // alert('timeout in 4 test');
-    location.assign('file:///Users/adamwilson/dragons/battleship-game/game.html')
+    // location.assign('file:///Users/adamwilson/dragons/battleship-game/game.html')
+    location.assign('game.html');
 }
