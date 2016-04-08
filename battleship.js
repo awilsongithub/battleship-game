@@ -7,16 +7,20 @@ MODEL, VIEW, CONTROLLER OBJECT IMPLEMENT THE GAME
 /*
 =============================================================
 SIMPLE CHANGES
-TODO board shrink to 90% size so fits on screens
-TODO put form, mssgs etc all on right side
-TODO welcome message at start
 TODO display guesses and mssg that lower # score better
-TODO sound effects for hit, miss, ongoing, sunk, sunk all
 TODO name battleships, display name upon sunk with modal for info about it
-TODO play again button uses document.location.reload() reload page
+TODO attract to text input if cursor not there ie when game screen loads
+    like hover, background-color but flashing w setInterval
+    setInterval every 1000 setTimeout 500 show 500 hidden
+TODO game variations
+    button shows variations. image plus name ie battle-beard
+    click sets image src variable.
+        then for each hitcell.setAttribute("src", srcVar);
 
-NEW VERSIONS OF GAME (also see trello board ideas)
+NEW VERSIONS OF GAME
+(also see trello board ideas)
 TODO make it a word game. see experimental section at bottom....
+
 
 CLICK ON CELL TO FIRE CODE
     assign .onclick handler to each td
@@ -27,6 +31,12 @@ CLICK ON CELL TO FIRE CODE
         variable id is the guess argument passed to processGuess
     existing code takes it from there
 
+XXXXX COMPLETED CHANGES XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+board shrink to 90% size so fits on screens
+put form, mssgs etc all on right side
+welcome message at start
+sound effects for hit, miss, ongoing, sunk, sunk all
+play again button uses document.location.reload() reload page
 =============================================================
 */
 
@@ -54,7 +64,6 @@ function showInstructions() {
     headingElement.appendChild(headingText);
     backdrop.appendChild(headingElement);
 
-
 }
 
 function gameOver(guesses) {
@@ -72,13 +81,26 @@ function gameOver(guesses) {
 function goToGameOverScreen() {
     // TODO this gave error " Not allowed to load local resource: file:///Users/adamwilson/dragons/battleship-game/home.html "
     // location.assign('home.html');
-
     // try to provide absolute url?:
     location.assign('http://battlebanana.herokuapp.com/home.html');
-
     // or try instead to simply reload current page with
     // location.reload(true);
 }
+
+// handler for first cell onclick using html onclick
+function cellClickShow(eventObj) {
+    var cell = eventObj.target;
+    console.log(cell);
+    cell.style.backgroundImage = 'url(media/hit.wav)';
+}
+
+
+
+
+
+
+
+
 
 // sound effect functions
 function fireAndHit() {

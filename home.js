@@ -1,7 +1,6 @@
 
 // onload triggers init() to initiate execution based on user input
 window.onload = function() {
-
     backgroundSound();
 
     var instructionsButton = document.getElementById('show-instructions');
@@ -24,7 +23,6 @@ function showInstructions() {
     // var headingText = document.createTextNode("Here's the deal");
     // headingElement.appendChild(headingText);
     // backdrop.appendChild(headingElement);
-
 }
 
 function backgroundSound() { // called on load
@@ -44,7 +42,5 @@ function startGameSetTimeout() {
 }
 
 function startGameNow() {
-    // alert('timeout in 4 test');
-    // location.assign('file:///Users/adamwilson/dragons/battleship-game/game.html')
     location.assign('game.html');
 }

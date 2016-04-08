@@ -1,0 +1,143 @@
+/*
+=====================================================
+LESS VARIABLES AND MIXINS
+=====================================================
+*/
+.controlPanelStyles {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+}
+/*
+=====================================================
+GAME SCREEN STYLES (AND SOME UNIVERSAL STYLES)
+=====================================================
+*/
+body {
+  background-color: black;
+  font-family: 'Special Elite', cursive;
+}
+#board {
+  position: relative;
+  width: 793.8px;
+  height: 668.8px;
+  margin: auto;
+  background: url("../media/board.jpg") no-repeat;
+  background-size: contain;
+}
+#board table {
+  position: absolute;
+  left: 134px;
+  top: 75px;
+  border-spacing: 0px;
+}
+#board table td {
+  width: 74px;
+  height: 75px;
+}
+#board table:hover {
+  background-color: #dcf9c8;
+}
+#board table .hit {
+  background: url("../media/banana.png") no-repeat center center;
+}
+#board table .miss {
+  background: url("../media/miss.png") no-repeat center center;
+}
+#board #author {
+  color: #bff49a;
+  font-size: .9em;
+  margin-top: 0;
+  padding-top: 1em;
+  margin-left: 137px;
+}
+#board #author a,
+#board #author-home a {
+  color: #85ea3e;
+  text-decoration: none;
+}
+#messageArea {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+  border-style: inset;
+  font-size: 2em;
+  line-height: 110%;
+  background: url('../media/monitor.png') no-repeat;
+  background-size: cover;
+  height: 140px;
+  padding: 15px;
+}
+#form {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+  width: 100%;
+  background-color: black;
+  padding: 15px;
+}
+#form #guessInput {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+  background: url('../media/monitor.png') no-repeat;
+  background-size: cover;
+  font-size: 1.5em;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+#form #fireButton {
+  background: url('../media/fire.jpg') no-repeat;
+  background-size: cover;
+  width: 90px;
+  height: 50px;
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+}
+#form .darkened-image {
+  background: rgba(70, 72, 82, 0.3);
+}
+/*
+=====================================================
+HOME SCREEN STYLES
+=====================================================
+*/
+.home-background {
+  background: url("../media/board.jpg") no-repeat;
+  background-size: 100%;
+  background-position: center center;
+}
+.jumbotron {
+  margin-top: 50px;
+  background-color: black;
+  color: #53af13;
+}
+.jumbotron .jumbotron .btn-default {
+  background-color: #85ea3e;
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+.jumbotron .jumbotron .btn-default:hover {
+  background-color: #53af13;
+}
+.jumbotron #author-home {
+  color: rgba(83, 175, 19, 0.6);
+  margin-top: 6em;
+  font-size: 1em;
+}
+
+
+/*# sourceMappingURL=style.css.map */

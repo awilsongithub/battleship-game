@@ -1,0 +1,68 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+============================================
+          OLD STYLES DISCARDED
+============================================
+*/
+
+/*
+board
+width: 1024px;
+height: 863px;
+width: 921px;
+height: 776px;
+
+messageArea
+absolute is relative to parent div
+position: absolute;
+top: 0px;
+left: 128px;
+width: 455px;
+margin: auto;
+background: url('../media/parchment.jpg')
+
+#missiles-remaining {
+    height: 200px;
+    color: rgba(83, 175, 19, .9);
+    font-size: 2em;
+}*/
+
+/* form
+position: absolute;*/
+/*top: 0px;
+right: 160px;
+background-color: rgb(83, 175, 19);
+background: url('../media/metal-plate_no_screws.jpeg') no-repeat;
+background-size: cover;
+*/
+
+/*downloaded font per these instructions: http://stackoverflow.com/questions/7961721/how-do-i-install-a-custom-font-on-an-html-site*/
+/*@font-face {
+    font-family: 'white-rabbit'; src: url('../media/white-rabbit/whitrabt.ttf');
+}*/
+
+/*font-family: 'white-rabbit', arial, sans-serif;*/
+/*font-family: 'Press Start 2P', cursive;*/

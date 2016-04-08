@@ -1,0 +1,180 @@
+/*
+=====================================================
+LESS VARIABLES AND MIXINS
+=====================================================
+*/
+
+@color: rgba(83, 175, 19, 1.0); // use lighten to vary?
+@font: 'Special Elite', cursive;
+
+// use variables for custom border property values.
+.customBorder (@color: grey, @style: outset, @width: 2px, @radius: 2px) {
+    border-color: @color;
+    border-style: @style;
+    border-width: @width; // or 3px on form
+    border-radius: @radius;
+}
+.controlPanelStyles {
+    .customBorder;
+    color: @color;
+}
+
+/*
+=====================================================
+GAME SCREEN STYLES (AND SOME UNIVERSAL STYLES)
+=====================================================
+*/
+
+// BODY
+body {
+    background-color: black;
+    font-family: @font;
+} // END BODY
+
+// GAME BOARD
+#board {
+    position: relative;
+    width: 793.8px;
+    height: 668.8px;
+    margin: auto;
+    background: url("../media/board.jpg") no-repeat;
+    background-size: contain;
+
+    table {
+        position: absolute;
+        left: 134px;
+        top: 75px;
+        border-spacing: 0px;
+
+        td {
+            width: 74px;
+            height: 75px;
+        }
+        &:hover {
+            background-color: lighten(@color, 50%);
+        }
+        .hit {
+            background: url("../media/banana.png") no-repeat center center;
+        }
+        .miss {
+            background: url("../media/miss.png") no-repeat center center;
+        }
+    }
+    #author {
+        color: lighten(@color, 40%);
+        font-size: .9em;
+        margin-top: 0;
+        padding-top: 1em;
+        margin-left: 137px;
+    }
+    #author a, #author-home a {
+        color: lighten(@color, 20%);
+        text-decoration: none;
+    }
+} // END GAME BOARD
+
+// CONTROL PANEL AREA
+    #messageArea {
+        .controlPanelStyles;
+        border-style: inset;
+        font-size: 2em;
+        line-height: 110%;
+        background: url('../media/monitor.png') no-repeat;
+        background-size: cover;
+        height: 140px;
+        padding: 15px;
+    }
+    #form {
+        .controlPanelStyles;
+        width: 100%;
+        background-color: black;
+        padding: 15px;
+
+        #guessInput {
+            .controlPanelStyles;
+            background: url('../media/monitor.png') no-repeat;
+            background-size: cover;
+            font-size: 1.5em;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        #fireButton {
+            background: url('../media/fire.jpg') no-repeat;
+            background-size: cover;
+            width: 90px;
+            height: 50px;
+            .customBorder;
+        }
+        .darkened-image {
+           background: rgba(70, 72, 82, 0.3);
+        }
+    }
+
+/*
+=====================================================
+HOME SCREEN STYLES
+=====================================================
+*/
+
+.home-background {
+    background: url("../media/board.jpg") no-repeat;
+    background-size: 100%;
+    background-position: center center;
+}
+
+// JUMBOTRON
+.jumbotron {
+    margin-top: 50px;
+    background-color: black;
+    color: @color;
+
+    .jumbotron .btn-default {
+        background-color: lighten(@color, 20%);
+        .customBorder;
+        margin-top: 10px;
+
+        &:hover {
+            background-color: @color;
+        }
+    }
+    #author-home {
+        color: rgba(83, 175, 19, .6);
+        margin-top: 6em;
+        font-size: 1em;
+    }
+} // END JUMBOTRON
+
+
+
+
+
+
+
+/*
+body
+    game
+        table
+        board
+        control-panel (NO STYLES)
+            messageArea
+            formArea
+                form-group
+
+    home
+        jumbotron
+            home-text
+                home-heading
+                home-p
+            a start-game-button
+            a show-instructions
+            a
+
+            author-home
+
+
+
+
+
+
+
+*/
