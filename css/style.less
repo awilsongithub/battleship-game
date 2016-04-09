@@ -35,23 +35,22 @@ body {
 #board {
     position: relative;
     width: 793.8px;
-    height: 668.8px;
+    height: 645px;
     margin: auto;
     background: url("../media/board.jpg") no-repeat;
     background-size: contain;
 
     table {
         position: absolute;
-        left: 134px;
-        top: 75px;
+        left: 131px;
+        top: 55px;
         border-spacing: 0px;
-
         td {
-            width: 74px;
+            width: 74.5px;
             height: 75px;
-        }
-        &:hover {
-            background-color: lighten(@color, 50%);
+            &:hover {
+                background-color: fade(@color, 40%);
+            }
         }
         .hit {
             background: url("../media/banana.png") no-repeat center center;
@@ -61,14 +60,14 @@ body {
         }
     }
     #author {
-        color: lighten(@color, 40%);
+        color: fade(@color, 60%);
         font-size: .9em;
         margin-top: 0;
         padding-top: 1em;
         margin-left: 137px;
     }
     #author a, #author-home a {
-        color: lighten(@color, 20%);
+        color: fade(@color, 60%);
         text-decoration: none;
     }
 } // END GAME BOARD
@@ -77,32 +76,35 @@ body {
     #messageArea {
         .controlPanelStyles;
         border-style: inset;
-        font-size: 2em;
+        font-size: 1.75em;
         line-height: 110%;
         background: url('../media/monitor.png') no-repeat;
         background-size: cover;
-        height: 140px;
+        height: 120px;
         padding: 15px;
     }
     #form {
-        .controlPanelStyles;
+        color: @color;
         width: 100%;
         background-color: black;
-        padding: 15px;
+        padding: 0px 15px 15px 15px;
 
         #guessInput {
             .controlPanelStyles;
+            border-style: inset;
             background: url('../media/monitor.png') no-repeat;
             background-size: cover;
             font-size: 1.5em;
             margin-right: 5px;
             margin-bottom: 10px;
+            height: 50px;
+            width: 95px;
         }
         #fireButton {
             background: url('../media/fire.jpg') no-repeat;
             background-size: cover;
-            width: 90px;
-            height: 50px;
+            width: 95px;
+            height: 58px;
             .customBorder;
         }
         .darkened-image {
@@ -128,16 +130,15 @@ HOME SCREEN STYLES
     background-color: black;
     color: @color;
 
-    .jumbotron .btn-default {
-        background-color: lighten(@color, 20%);
+    .btn-default {
+        background-color: fade(@color, 95%);
         .customBorder;
         margin-top: 10px;
-
         &:hover {
             background-color: @color;
         }
     }
-    #author-home {
+    #author-home, #author-home a {
         color: rgba(83, 175, 19, .6);
         margin-top: 6em;
         font-size: 1em;
