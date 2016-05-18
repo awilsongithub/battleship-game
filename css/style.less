@@ -7,13 +7,14 @@ LESS VARIABLES AND MIXINS
 @color: rgba(83, 175, 19, 1.0); // use lighten to vary?
 @font: 'Special Elite', cursive;
 
-// use variables for custom border property values.
+// use variables for custom border property values
 .customBorder (@color: grey, @style: outset, @width: 2px, @radius: 2px) {
     border-color: @color;
     border-style: @style;
-    border-width: @width; // or 3px on form
+    border-width: @width;
     border-radius: @radius;
 }
+
 .controlPanelStyles {
     .customBorder;
     color: @color;
@@ -144,38 +145,3 @@ HOME SCREEN STYLES
         font-size: 1em;
     }
 } // END JUMBOTRON
-
-
-
-
-
-
-
-/*
-body
-    game
-        table
-        board
-        control-panel (NO STYLES)
-            messageArea
-            formArea
-                form-group
-
-    home
-        jumbotron
-            home-text
-                home-heading
-                home-p
-            a start-game-button
-            a show-instructions
-            a
-
-            author-home
-
-
-
-
-
-
-
-*/

@@ -1,6 +1,6 @@
 /*
 =============================================================
-MODEL, VIEW, CONTROLLER OBJECT IMPLEMENT THE GAME
+MODEL, VIEW, CONTROLLER OBJECTS IMPLEMENT THE GAME
 =============================================================
 */
 
@@ -45,14 +45,13 @@ window.onload = init;
 
 // init assignes an event handler for fire button
 function init() {
-    view.displayMessage("Enter a location and click 'FIRE' or press Enter.")
+    view.displayMessage("Enter a location and click 'FIRE' or press Enter.");
     // backgroundSound();
     var fire = document.getElementById('fireButton');
     fire.onclick = handleFireButton; // assign handler don't call it
     // fire with keypress of return
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
-
     model.generateShipLocations();
 } // end init
 
@@ -95,20 +94,13 @@ function cellClickShow(eventObj) {
 }
 
 
-
-
-
-
-
-
-
 // sound effect functions
-function fireAndHit() {
+var fireAndHit = function () {
     document.getElementById("hit-sound").play();
-}
-function fireAndMiss() {
+};
+var fireAndMiss = function () {
     document.getElementById("miss-sound").play();
-}
+};
 function backgroundSound() { // called on load
     document.getElementById("background-sound").play();
 }
@@ -171,7 +163,7 @@ var model = {
     numShips: 3,
     shipLength: 3,
     shipsSunk: 0,
-
+    // hits array values changed to "hit" when hit
     ships:  [ {locations: [0, 0, 0], hits: ["", "", ""] },
             {locations: [0, 0, 0], hits: ["", "", ""] },
             {locations: [0, 0, 0], hits: ["", "", ""] } ],
@@ -188,7 +180,7 @@ var model = {
             if (index >= 0) {
                 ship.hits[index]= "hit";
                 fireAndHit(); // sound
-                view.displayHit(guess);
+                view.displayHit(guess); // set cell css class to "hit"
                 view.displayMessage("HIT!");
 
                 // if ship is sunk
@@ -209,7 +201,7 @@ var model = {
 
     }, // end fire
 
-    // take ship & check hits array
+    // return false if any hit array values !== "hit"
     isSunk: function(ship) {
         for (var i = 0; i < this.shipLength; i++ ) {
             if (ship.hits[i] !== "hit") {
@@ -217,7 +209,7 @@ var model = {
             }
         }
         return true;
-    }, // end isSunk
+    },
 
     // this master method uses genShips and collision helpers
     generateShipLocations: function() {
@@ -271,6 +263,7 @@ var model = {
         for (var i = 0; i < this.numShips; i++ ) {
             var ship = model.ships[i];
             for (var j = 0; j < locations.length; j++ ) {
+              // if >= 0 if found matching location
                 if ( ship.locations.indexOf(locations[j]) >= 0 ) {
                     return true; // there IS a collision
                 }
@@ -294,8 +287,6 @@ var model = {
 // model.fire("51");
 
 
-
-
 // controller object
 var controller = {
     // track guesses
@@ -316,12 +307,11 @@ var controller = {
                 // go to home page, display message with play, instr, var buttons
                 // window.open('home.html');
                 gameOver(this.guesses);
-
             }
         }
     },
 
-    // check validity of guess length, type, values & return T or F
+    // check for invalid guesses, return guess translated to nums ie 01
     parseGuess: function(guess) {
         var alphabet = ["A", "B", 'C', 'D', 'E', 'F', 'G'];
         var messageIfInvalidGuess = "Oops, please enter a space on the gameboard.";
