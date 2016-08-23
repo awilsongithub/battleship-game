@@ -53,7 +53,22 @@ function init() {
     var guessInput = document.getElementById('guessInput');
     guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
     model.generateShipLocations();
+
+    // get array of all td elements. assign each one an event handler
+    var tableCells = document.getElementsByTagName('td');
+    for (var i =0; i < tableCells.length; i++) {
+        tableCells[i].onclick = cellClickAction;
+    }
+
 } // end init
+
+// practice for cell click actions to fire
+function cellClickAction(){
+    console.log(this.id);
+    controller.processGuess(this.id);
+}
+
+
 
 // show instructions on home welcome page with buttons to proceed to play
 function showInstructions() {
@@ -294,7 +309,16 @@ var controller = {
 
     // process guesses
     processGuess: function(guess) {
-        var location = this.parseGuess(guess);
+        // if guess comes from keyboard input, parse it into numbers. if comes from click on board it is already numbers and we skips parseGuess
+        // check first guess.charAt(0) and if NaN then call parseGuess, otherwise it is a num and we just need to pass it as is
+        var location;
+        if (isNaN(guess.charAt(0))){
+            location = this.parseGuess(guess);
+        } else {
+            location = guess;
+        }
+
+        // var location = this.parseGuess(guess);
         if (location) {
             this.guesses++;
             console.log(this.guesses);
