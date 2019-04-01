@@ -1,158 +1,118 @@
 /*
 =============================================================
-MODEL, VIEW, CONTROLLER OBJECTS IMPLEMENT THE GAME
+IMPLEMENTED WITH MVC STYLE OBJECTS
 =============================================================
 */
 
-/*
-=============================================================
-SIMPLE CHANGES
-TODO display guesses and mssg that lower # score better
-TODO name battleships, display name upon sunk with modal for info about it
-TODO attract to text input if cursor not there ie when game screen loads
-    like hover, background-color but flashing w setInterval
-    setInterval every 1000 setTimeout 500 show 500 hidden
-TODO game variations
-    button shows variations. image plus name ie battle-beard
-    click sets image src variable.
-        then for each hitcell.setAttribute("src", srcVar);
-
-NEW VERSIONS OF GAME
-(also see trello board ideas)
-TODO make it a word game. see experimental section at bottom....
-
-
-CLICK ON CELL TO FIRE CODE
-    assign .onclick handler to each td
-        iterate over 0-6 row,
-        for each row, iterate over 0-6 column and assign
-    the eventObj is then the td element and is passed to handler
-        assign eventObj.target to a variable
-        variable id is the guess argument passed to processGuess
-    existing code takes it from there
-
-XXXXX COMPLETED CHANGES XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-board shrink to 90% size so fits on screens
-put form, mssgs etc all on right side
-welcome message at start
-sound effects for hit, miss, ongoing, sunk, sunk all
-play again button uses document.location.reload() reload page
-=============================================================
-*/
-
-// onload triggers init() to initiate execution based on user input
 window.onload = init;
 
-// init assignes an event handler for fire button
 function init() {
-    view.displayMessage("Enter a location and click 'FIRE' or press Enter.");
-    // backgroundSound();
+    view.displayMessage("Enter a location (A0, B2 etc.) & click 'FIRE' or press Enter.");
+   
     var fire = document.getElementById('fireButton');
-    fire.onclick = handleFireButton; // assign handler don't call it
-    // fire with keypress of return
+    fire.onclick = handleFireButton; 
+
     var guessInput = document.getElementById('guessInput');
-    guessInput.onkeypress = handleKeyPress; // assign handler dont' call it
+    guessInput.onkeypress = handleKeyPress; 
+
     model.generateShipLocations();
 
-    // get array of all td elements. assign each one an event handler
     var tableCells = document.getElementsByTagName('td');
     for (var i =0; i < tableCells.length; i++) {
         tableCells[i].onclick = cellClickAction;
     }
+    backgroundSound();
+} 
 
-} // end init
-
-// practice for cell click actions to fire
 function cellClickAction(){
-    console.log(this.id);
     controller.processGuess(this.id);
 }
 
-
-
-// show instructions on home welcome page with buttons to proceed to play
 function showInstructions() {
     var backdrop = document.getElementById('jumbotron');
     var headingElement = document.createElement('h1');
     var headingText = document.createTextNode("Here's the deal");
     headingElement.appendChild(headingText);
     backdrop.appendChild(headingElement);
-
 }
 
 function gameOver(guesses) {
-    // play monkey sounds
     document.getElementById("background-sound").pause();
     document.getElementById("win-game").play();
-
-    console.log(guesses);
+    
     view.displayMessage("You sunk all my battle-bananas in " + guesses + " guesses!");
-    // in 2 secs go to game over screen
-    // home customized or new page
     window.setTimeout(goToGameOverScreen, 8000);
 }
 
 function goToGameOverScreen() {
     // TODO this gave error " Not allowed to load local resource: file:///Users/adamwilson/dragons/battleship-game/home.html "
     // location.assign('home.html');
-    // try to provide absolute url?:
+
     location.assign('http://battlebanana.herokuapp.com/home.html');
-    // or try instead to simply reload current page with
-    // location.reload(true);
 }
 
-// handler for first cell onclick using html onclick
 function cellClickShow(eventObj) {
     var cell = eventObj.target;
-    console.log(cell);
     cell.style.backgroundImage = 'url(media/hit.wav)';
 }
 
+/* 
+sound effects 
+*/
 
-// sound effect functions
+const hitSound = document.getElementById("hit-sound");
+const missSound = document.getElementById("miss-sound");
+const bgSound = document.getElementById("background-sound");
+const shipSunkSound = document.getElementById("monkey-lost-ship");
+
 var fireAndHit = function () {
-    document.getElementById("hit-sound").play();
+    stopOtherSounds();
+    hitSound.play();
 };
 var fireAndMiss = function () {
-    document.getElementById("miss-sound").play();
+    stopOtherSounds();
+    missSound.play();
 };
-function backgroundSound() { // called on load
-    document.getElementById("background-sound").play();
+function backgroundSound() { 
+    bgSound.play();
 }
 function shipGotSunk() {
-    document.getElementById("monkey-lost-ship").play();
+    stopOtherSounds();
+    fireAndHit();
+    setTimeout(function(){
+        stopOtherSounds();
+        shipSunkSound.play();
+    }, 400);
 }
-
-
-// get user input value and pass to controller
+function stopOtherSounds() {
+    console.log(hitSound)
+    hitSound.pause();
+    hitSound.currentTime = 0;
+    missSound.pause();
+    missSound.currentTime = 0;
+}
 function handleFireButton() {
-    // get input element then it's value in 2 steps
     var guessInput = document.getElementById('guessInput');
-    var guess = guessInput.value;
-    var guessUpperCase = guess.toUpperCase(); // a1 > A1 etc.
-    console.log(guessUpperCase);
-    // call code to process input value in controller
-    controller.processGuess(guessUpperCase);
-    // clear input field
+    var guess = guessInput.value.toUpperCase();
+    controller.processGuess(guess);
     guessInput.value = "";
+    guessInput.focus();
 }
 
 // fire by hitting Enter
 function handleKeyPress(e) {
     var fireButton = document.getElementById('fireButton');
-    if (e.keyCode === 13)  { // e for event, 13 is keycode for Enter key
+    if (e.keyCode === 13)  { 
         fireButton.click();
         return false; // so form doesn't do anything else
     }
 }
-
 
 // view object
 var view = {
     displayMessage: function(msg) {
         var messageArea = document.getElementById("messageArea");
         messageArea.innerHTML = msg;
-        // couldv'e also used createTextNode and appendChild
     },
     displayHit: function(location) {
         var cell = document.getElementById(location);
@@ -164,16 +124,9 @@ var view = {
     }
 };
 
-// testing view object
-// view.displayMessage("Testing the message display method of view object");
-// view.displayMiss("01");
-// view.displayHit("34");
-// view.displayMiss("66");
-
-
 // model object tracks status, hits, misses, etc.
 var model = {
-    // we can change game later by changing these properties
+
     boardsize: 7,
     numShips: 3,
     shipLength: 3,
@@ -183,30 +136,29 @@ var model = {
             {locations: [0, 0, 0], hits: ["", "", ""] },
             {locations: [0, 0, 0], hits: ["", "", ""] } ],
 
-    // take user guess. Iterate over ship locations to determine if hit
     fire: function(guess) {
-        // check all ship locations for guess match
+
+        // check ship locations 
         for (var i = 0; i < this.numShips; i++ ) {
             var ship = this.ships[i];
-            // indexOf rtns index of guess or -1
             var index = ship.locations.indexOf(guess);
 
             // if hit
             if (index >= 0) {
                 ship.hits[index]= "hit";
                 fireAndHit(); // sound
-                view.displayHit(guess); // set cell css class to "hit"
+                view.displayHit(guess); 
                 view.displayMessage("HIT!");
 
-                // if ship is sunk
+                // if sunk
                 if (this.isSunk(ship)) {
                     this.shipsSunk++;
                     view.displayMessage("You sunk my battle-banana!");
-                    shipGotSunk(); // plays monkey sound
+                    shipGotSunk();
                 }
                 return true;
             }
-        } // end loop
+        } 
 
         // if miss
         view.displayMiss(guess);
@@ -214,9 +166,8 @@ var model = {
         fireAndMiss();
         return false;
 
-    }, // end fire
+    },
 
-    // return false if any hit array values !== "hit"
     isSunk: function(ship) {
         for (var i = 0; i < this.shipLength; i++ ) {
             if (ship.hits[i] !== "hit") {
@@ -228,29 +179,23 @@ var model = {
 
     // this master method uses genShips and collision helpers
     generateShipLocations: function() {
-        // declare locations variable
         var locations;
-        // iterate for # of ships
         for (var i = 0; i < this.numShips; i ++) {
-            // generate a ship's locations repeatedly until collision method returns false (no collisions thus successful)
-            // do while loop executes and repeats until while === false
+            // generate a ship's locations repeatedly until collision method returns false 
             do {
                 locations = this.generateShip();
             } while ( this.collision(locations) );
-            // store locations into ship object in ships property
-            console.log(locations); // for debugging
-            console.log(this.ships[i]); // for debugging
             this.ships[i].locations = locations;
         }
-    }, // end generateShipLocations
+    },
 
     // generate the location cells of a single ship
     generateShip: function() {
-        // randomly determine vertical or horizontal ship directions
-        var direction = Math.floor(Math.random() * 2); // 0 or 1
+        // vertical or horizontal 
+        var direction = Math.floor(Math.random() * 2); 
         var row, col;
-
-        if (direction === 1) { // horizontal ship
+        // if horizontal ship, set row to a random number in the scope of the game board size. set the column to a number in this scope but subtract the length of a ship to allow us to add the additional 2 cells to it.
+        if (direction === 1) {
             // generate starting location row and col
             row = Math.floor(Math.random() * this.boardsize); // 0-6
             col = Math.floor(Math.random() * (this.boardsize - this.shipLength)); // 0-4
@@ -259,11 +204,10 @@ var model = {
             row = Math.floor(Math.random() * (this.boardsize - this.shipLength)); // 0-4
         }
 
-        // add the rest of the ship cell locations to the start cell
+        // add rest of ship cell locations
         var newShipLocations = [];
         for (i = 0; i < this.shipLength; i++ ) {
             if (direction === 1) { // horizontal
-                // locations are row + col+i (thus col+0, col+1, col+2)
                 newShipLocations[i] = row + "" + (col + i);
             } else { // vertical
                 newShipLocations[i] = (row + i) + "" + col;
@@ -271,43 +215,29 @@ var model = {
         }
         return newShipLocations;
 
-    }, // end generateShip
+    }, 
 
     collision: function(locations) {
         // for loop iterate existing ships, for each ship check each location in locations array for match with locations[j] which is a location value of new ship being generated
         for (var i = 0; i < this.numShips; i++ ) {
             var ship = model.ships[i];
             for (var j = 0; j < locations.length; j++ ) {
-              // if >= 0 if found matching location
                 if ( ship.locations.indexOf(locations[j]) >= 0 ) {
-                    return true; // there IS a collision
+                    return true; 
                 }
             }
         }
-        return false; // we iterated them all and found no collision
+        return false; 
 
-    } // end collision
+    } 
 
 }; // end model
 
 
-// testing code for model IT WORKS!!! SUN 11PM
-// var userGuess = "06";
-// model.fire(userGuess);
-// var anotherUserGuess = "16";
-// model.fire(anotherUserGuess);
-// model.fire("53");
-// model.fire("55");
-// model.fire("56");
-// model.fire("51");
-
-
 // controller object
 var controller = {
-    // track guesses
     guesses: 0,
 
-    // process guesses
     processGuess: function(guess) {
         // if guess comes from keyboard input, parse it into numbers. if comes from click on board it is already numbers and we skips parseGuess
         // check first guess.charAt(0) and if NaN then call parseGuess, otherwise it is a num and we just need to pass it as is
@@ -317,19 +247,10 @@ var controller = {
         } else {
             location = guess;
         }
-
-        // var location = this.parseGuess(guess);
         if (location) {
             this.guesses++;
-            console.log(this.guesses);
-
-            // returns true if a hit
             var hit = model.fire(location);
-
-            // check for game over
             if (hit && model.shipsSunk === model.numShips) {
-                // go to home page, display message with play, instr, var buttons
-                // window.open('home.html');
                 gameOver(this.guesses);
             }
         }
@@ -352,7 +273,7 @@ var controller = {
             } else if ( row < 0 || row >= model.boardsize || column < 0 || column >= model.boardsize ) {
                 alert(messageIfInvalidGuess);
             } else {
-                return row + column; // concatenated
+                return row + column; 
             }
         }
         return null; // if we get here there was a failed check
@@ -360,45 +281,12 @@ var controller = {
 
 }; // end controller
 
-// testing controller
+// for testing controller
 // controller.processGuess("A0");
-// controller.processGuess("B6");
+// controller.processGuess("B9");
 // controller.processGuess("A6");
-// controller.processGuess("C6");
-//
-// controller.processGuess("C4");
-// controller.processGuess("D4");
-// controller.processGuess("E4");
-//
-// controller.processGuess("B0");
-// controller.processGuess("B1");
-// controller.processGuess("B2");
-
-/*
-===================================================================
-EXPERIMENTAL WORD GAME VERSION IDEAS
-===================================================================
-*/
 
 
-// ship objects have third property "letters"
-// ships:  [
-//     {locations: ["06", "16", "26"], hits: ["", "", ""], letters: ["B", "U", "G"] },
-//     {locations: ["24", "34", "44"], hits: ["", "", ""], letters: ["B", "U", "G"] },
-//     {locations: ["10", "11", "12"], hits: ["", "", ""], letters: ["B", "U", "G"] } ],
-
-// display scrabble square image and letter on top of it
-// function displayHit...
 
 
-// display letter in the square (td)
-// function addTextNode(letter, square) {
-//     var letter = document.createTextNode(letter);
-//     td = document.getElementById(square);
-//     td.appendChild(letter);
-// }
 
-// call function with
-// var letter = ship.letters[index];
-// var square = .......
-// addTextNode(letter, square);

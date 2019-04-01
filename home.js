@@ -11,18 +11,11 @@ window.onload = function() {
     startGameButton.onclick = startGameSetTimeout;
 };
 
-var showInstructions = function () {
-    // var backdrop = document.getElementById('jumbotron');
-    // var homeHeading = document.getElementById('home-heading');
-    // homeHeading.innerHTML = "Here's The Deal";
-    console.log('showInstructions called');
-    document.getElementById('home-heading').innerHTML = "How To Play:";
-    document.getElementById('home-p').innerHTML = "9 items are hidden on the 7x7 game board. Enter locations and click the FIRE button (or hit return) to find them. Items are hidden in groups of 3 horizontally or vertically.";
+var instructions = "9 items are hidden on the game board in groups of 3 (horizontally or vertically). Find them in as few guesses as possible. Guess by clicking a square on the game board (or you can type your guess location and hit enter or press return).";
 
-    // var headingElement = document.createElement('H1');
-    // var headingText = document.createTextNode("Here's the deal");
-    // headingElement.appendChild(headingText);
-    // backdrop.appendChild(headingElement);
+var showInstructions = function () {
+    document.getElementById('home-heading').innerHTML = "How To Play:";
+    document.getElementById('home-p').innerHTML = instructions;
 };
 
 var backgroundSound = function () { // called on load

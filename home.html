@@ -2,31 +2,23 @@
 <html>
     <head>
 
-        <!-- FROM BOOTSTRAP TEMPLATE -->
         <meta charset="UTF-8">
-        <!-- Use latest and greatest rendering engine -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- scale 1 (100%) prevents shrinking -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Minified Bootstrap CSS FROM CDN. No optional theme since we want flatter look -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-        <!-- FROM BATTLE BANANA HOME -->
         <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
-        <!-- <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'> -->
         <link rel="stylesheet" href="css/style.css">
         <title>BattleBanana</title>
     </head>
 
     <body class='home-background'>
 
-        <!-- AUDIO ADDITIONS PER THIS TUTORIAL: http://www.onlywebpro.com/2012/03/10/html5-game-development-adding-sound-effects/ -->
-        <audio id="background-sound" src="media/fantasy.wav" loop="true" autoplay="true"></audio>
+        <!-- AUDIO -->
+        <audio id="background-sound" src="media/fantasy.wav" loop="true"></audio>
         <audio id="miss-sound" src="media/miss_hiss.wav"></audio>
         <audio id="hit-sound" src="media/hit.mp3"></audio>
         <audio id="monkey-lost-ship" src="media/gorilla-sound.wav"></audio>
         <audio src="media/start-game.wav" id="start-game"></audio>
-
 
         <!--    GRID    -->
         <div class="container">
@@ -41,7 +33,6 @@
                             <p id="home-p" class="text-center">Ready, Aim...</p>
                         </div>
 
-                        <!-- <a class="btn btn-default btn-lg btn-block" href="game.html">Play!</a> -->
                         <a class="btn btn-default btn-lg btn-block" id="start-game-button">Play!</a>
 
                         <a id="show-instructions" class="btn btn-default btn-lg btn-block">Instructions</a>
