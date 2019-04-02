@@ -1,34 +1,35 @@
-/*
-=============================================================
-IMPLEMENTED WITH MVC STYLE OBJECTS
-=============================================================
-*/
+/* =====================================
+INITIALIZE
+====================================== */
 
 window.onload = init;
 
 function init() {
-  view.displayMessage(
-    "Enter a location (A0, B2 etc.) & click 'FIRE' or press Enter."
-  );
+  // set ship locations 
+  model.generateShipLocations();
 
+  // register handlers
   var fire = document.getElementById("fireButton");
   fire.onclick = handleFireButton;
 
   var guessInput = document.getElementById("guessInput");
   guessInput.onkeypress = handleKeyPress;
 
-  model.generateShipLocations();
-
   var tableCells = document.getElementsByTagName("td");
   for (var i = 0; i < tableCells.length; i++) {
     tableCells[i].onclick = cellClickAction;
   }
+
+  // initialize display
+  view.displayMessage("TYPE A POSITION & HIT 'ENTER'");
+  updateMissileDisplay();
+  guessInput.focus();
   backgroundSound();
 }
 
-function cellClickAction() {
-  controller.processGuess(this.id);
-}
+/* ===================================
+MISC HELPER FUNCTIONS
+======================================*/
 
 function showInstructions() {
   var backdrop = document.getElementById("jumbotron");
@@ -41,18 +42,48 @@ function showInstructions() {
 function gameOver(guesses) {
   document.getElementById("background-sound").pause();
   document.getElementById("win-game").play();
-
-  view.displayMessage(
-    "You sunk all my battle-bananas in " + guesses + " guesses!"
-  );
+  view.displayMessage("You sunk all my battle-bananas in " + guesses + " guesses!");
   window.setTimeout(goToGameOverScreen, 8000);
 }
 
 function goToGameOverScreen() {
-  // TODO this gave error " Not allowed to load local resource: file:///Users/adamwilson/dragons/battleship-game/home.html "
+  // TODO assigning the local resource gave error: 
+  // " Not allowed to load local resource: file:///Users/adamwilson/dragons/battleship-game/home.html "
   // location.assign('home.html');
-
+  // so I'm assigning the hosted site home url 
   location.assign("http://battlebanana.herokuapp.com/home.html");
+}
+
+/* ==============================
+TIMER 
+=============================== */
+
+var timerDisplay = document.querySelector('.timer');
+
+function incrementTimer() {
+  // increment 
+  model.time.sec++;
+  if (model.time.sec >= 60) {
+    model.time.sec = 0;
+    model.time.min++;
+  }
+  // format
+  let m = model.time.min;
+  let s = model.time.sec;
+  if(s < 10){ s = '0' + s; }
+  // if(m < 10){ m = '0' + m; }
+  timerDisplay.innerHTML = m + ':' + s;
+}
+
+setInterval(incrementTimer, 1000);
+
+
+/* ===================================
+INPUT HANDLERS 
+======================================*/
+
+function cellClickAction() {
+  controller.processGuess(this.id);
 }
 
 function cellClickShow(eventObj) {
@@ -60,47 +91,32 @@ function cellClickShow(eventObj) {
   cell.style.backgroundImage = "url(media/hit.wav)";
 }
 
-/* 
-sound effects 
-*/
-
-const hitSound = document.getElementById("hit-sound");
-const missSound = document.getElementById("miss-sound");
-const bgSound = document.getElementById("background-sound");
-const shipSunkSound = document.getElementById("monkey-lost-ship");
-
-var fireAndHit = function() {
-  stopOtherSounds();
-  hitSound.play();
-};
-var fireAndMiss = function() {
-  stopOtherSounds();
-  missSound.play();
-};
-function backgroundSound() {
-  bgSound.play();
-}
-function playSunkSound() {
-  stopOtherSounds();
-  fireAndHit();
-  setTimeout(function() {
-    stopOtherSounds();
-    shipSunkSound.play();
-  }, 400);
-}
-function stopOtherSounds() {
-  console.log(hitSound);
-  hitSound.pause();
-  hitSound.currentTime = 0;
-  missSound.pause();
-  missSound.currentTime = 0;
-}
 function handleFireButton() {
   var guessInput = document.getElementById("guessInput");
   var guess = guessInput.value.toUpperCase();
   controller.processGuess(guess);
   guessInput.value = "";
-  guessInput.focus();
+}
+
+var missiles = document.querySelector(".missiles");
+var missileCount = document.querySelector('.missileCount');
+
+function updateMissileDisplay(){
+  console.log('missiles', model.missileCount);
+  console.log(missileCount)
+  let newHTML = '';
+  for (let i=0; i<model.missileCount; i++){
+    newHTML += '| ';
+  }
+  if(model.missileCount < 10) {
+    missiles.classList.add('text-danger');
+  }
+  missileCount.innerHTML = newHTML;
+
+  if (model.missileCount <= 0) {
+    alert('out of ammo');
+    return true;
+  }
 }
 
 // fire by hitting Enter
@@ -112,12 +128,52 @@ function handleKeyPress(e) {
   }
 }
 
-// view object
+/* ===================================
+SOUND EFFECT FUNCTIONS
+======================================*/
+
+const hitSound = document.getElementById("hit-sound");
+const missSound = document.getElementById("miss-sound");
+const bgSound = document.getElementById("background-sound");
+const shipSunkSound = document.getElementById("monkey-lost-ship");
+
+var fireAndHit = function () {
+  stopOtherSounds();
+  hitSound.play();
+};
+var fireAndMiss = function () {
+  stopOtherSounds();
+  missSound.play();
+};
+function backgroundSound() {
+  bgSound.play();
+}
+function playSunkSound() {
+  stopOtherSounds();
+  fireAndHit();
+  setTimeout(function () {
+    stopOtherSounds();
+    shipSunkSound.play();
+  }, 400);
+}
+function stopOtherSounds() {
+  console.log(hitSound);
+  hitSound.pause();
+  hitSound.currentTime = 0;
+  missSound.pause();
+  missSound.currentTime = 0;
+}
+
+/* ===================================
+VIEW OBJECT 
+displays stuff
+======================================*/
+
 var view = {
     messageArea: document.getElementById("messageArea"),
     sunk: document.getElementsByClassName('sunk'),
 
-displayMessage: function(msg) {
+  displayMessage: function(msg) {
     this.messageArea.innerHTML = msg;
   },
   displayHit: function(location) {
@@ -135,12 +191,18 @@ displayMessage: function(msg) {
   }
 };
 
-// model object tracks status, hits, misses, etc.
+/* ===================================
+MODEL OBJECT
+tracks status, hits, misses, locations etc.
+======================================*/
+
 var model = {
   boardsize: 7,
   numShips: 3,
   shipLength: 3,
   shipsSunk: 0,
+  missileCount: 30,
+
   // hits array values changed to "hit" when hit
   ships: [
     { locations: [0, 0, 0], hits: ["", "", ""] },
@@ -148,7 +210,20 @@ var model = {
     { locations: [0, 0, 0], hits: ["", "", ""] }
   ],
 
+  // object to hold timer state with initial values 
+  time: {
+    min: 0,
+    sec: 0,
+  },
+
   fire: function(guess) {
+
+    // misc tasks 
+    model.missileCount--;
+    updateMissileDisplay();
+
+    guessInput.focus();
+
     // check ship locations
     for (var i = 0; i < this.numShips; i++) {
       var ship = this.ships[i];
@@ -244,7 +319,10 @@ var model = {
   }
 }; // end model
 
-// controller object
+/* ===================================
+CONTROLLER OBJECT
+parse and process guesses
+======================================*/
 var controller = {
   guesses: 0,
 
