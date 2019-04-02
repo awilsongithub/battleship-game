@@ -4,20 +4,20 @@ LESS VARIABLES AND MIXINS
 =====================================================
 */
 
-@color: rgba(83, 175, 19, 1.0); // use lighten to vary?
-@font: 'Special Elite', cursive;
+@color: rgba(83, 175, 19, 1); // use lighten to vary?
+@font: "Special Elite", cursive;
 
 // use variables for custom border property values
 .customBorder (@color: grey, @style: outset, @width: 2px, @radius: 2px) {
-    border-color: @color;
-    border-style: @style;
-    border-width: @width;
-    border-radius: @radius;
+  border-color: @color;
+  border-style: @style;
+  border-width: @width;
+  border-radius: @radius;
 }
 
 .controlPanelStyles {
-    .customBorder;
-    color: @color;
+  .customBorder;
+  color: @color;
 }
 
 /*
@@ -28,91 +28,122 @@ GAME SCREEN STYLES (AND SOME UNIVERSAL STYLES)
 
 // BODY
 body {
-    background-color: black;
-    font-family: @font;
+  background-color: black;
+  font-family: @font;
+  color: @color;
 } // END BODY
 
-// GAME BOARD
-#board {
-    position: relative;
-    width: 793.8px;
-    height: 645px;
-    margin: auto;
-    background: url("../media/board.jpg") no-repeat;
-    background-size: contain;
+.game-container {
+  width: 1200px;
+  margin: auto;
+  background: black;
 
-    table {
-        cursor: crosshair;
-        position: absolute;
-        left: 131px;
-        top: 55px;
-        border-spacing: 0px;
-        td {
-            width: 74.5px;
-            height: 75px;
-            &:hover {
-                background-color: fade(@color, 40%);
-            }
-        }
-        .hit {
-            background: url("../media/banana.png") no-repeat center center;
-        }
-        .miss {
-            background: url("../media/miss.png") no-repeat center center;
-        }
+  border: 1px solid green;
+  // flex didnt center vedrtically
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.controls {
+  width: 400px;
+  border: 1px solid green;
+  display: inline-block;
+  float: left;
+  margin-top: 40px;
+  padding: 10px;
+}
+
+// GAME BOARD
+.board {
+  // position: relative;
+  // display: inline-block;
+  float: left;
+  width: 690px;
+  height: 645px;
+  background: url("../media/board_modified.jpeg") no-repeat;
+  background-size: contain;
+
+  table {
+    width: 532px;
+    cursor: crosshair;
+    position: absolute;
+    left: 77px;
+    top: 44px;
+    border-spacing: 0px;
+    td {
+      width: 76px;
+      height: 76.6px;
+      &:hover {
+        background-color: fade(@color, 40%);
+      }
     }
-    #author {
-        color: fade(@color, 60%);
-        font-size: .9em;
-        margin-top: 0;
-        padding-top: 1em;
-        margin-left: 137px;
+    .hit {
+      background: url("../media/banana.png") no-repeat center center;
     }
-    #author a, #author-home a {
-        color: fade(@color, 60%);
-        text-decoration: none;
+    .miss {
+      background: url("../media/miss.png") no-repeat center center;
     }
+  }
+  #author {
+    color: fade(@color, 60%);
+    font-size: 0.9em;
+    margin-top: 0;
+    padding-top: 1em;
+    margin-left: 137px;
+  }
+  #author a,
+  #author-home a {
+    color: fade(@color, 60%);
+    text-decoration: none;
+  }
 } // END GAME BOARD
 
 // CONTROL PANEL AREA
-    #messageArea {
-        .controlPanelStyles;
-        border-style: inset;
-        font-size: 1.75em;
-        line-height: 110%;
-        background: url('../media/monitor.png') no-repeat;
-        background-size: cover;
-        height: 120px;
-        padding: 15px;
-    }
-    #form {
-        color: @color;
-        width: 100%;
-        background-color: black;
-        padding: 0px 15px 15px 15px;
+#messageArea {
+  .controlPanelStyles;
+  border-style: inset;
+  font-size: 1.75em;
+  line-height: 110%;
+  background: url("../media/monitor.png") no-repeat;
+  background-size: cover;
+  height: 120px;
+  padding: 15px;
+}
+form {
+  color: @color;
+  // width: 565px;
+  // background-color: black;
+  // padding: 0px 15px 15px 15px;
+  // margin: auto;
 
-        #guessInput {
-            .controlPanelStyles;
-            border-style: inset;
-            background: url('../media/monitor.png') no-repeat;
-            background-size: cover;
-            font-size: 1.5em;
-            margin-right: 5px;
-            margin-bottom: 10px;
-            height: 50px;
-            width: 95px;
-        }
-        #fireButton {
-            background: url('../media/fire.jpg') no-repeat;
-            background-size: cover;
-            width: 95px;
-            height: 58px;
-            .customBorder;
-        }
-        .darkened-image {
-           background: rgba(70, 72, 82, 0.3);
-        }
-    }
+  #guessInput {
+    .controlPanelStyles;
+    border-style: inset;
+    background: url("../media/monitor.png") no-repeat;
+    background-size: cover;
+    font-size: 2.5em;
+    font-weight: bold;
+    // margin-right: 5px;
+    // margin-bottom: 0;
+    height: 58px;
+    display: inline-block;
+    width: 72%;
+  }
+  #fireButton {
+    background: url("../media/fire.jpg") no-repeat;
+    background-size: cover;
+    width: 95px;
+    height: 56px;
+    .customBorder;
+    width: 25%;
+    display: inline-block;
+  }
+}
 
 /*
 =====================================================
@@ -121,28 +152,29 @@ HOME SCREEN STYLES
 */
 
 .home-background {
-    background: url("../media/board.jpg") no-repeat;
-    background-size: 100%;
-    background-position: center center;
+  background: url("../media/board.jpg") no-repeat;
+  background-size: 100%;
+  background-position: center center;
 }
 
 // JUMBOTRON
 .jumbotron {
-    margin-top: 50px;
-    background-color: black;
-    color: @color;
+  margin-top: 50px;
+  background-color: black;
+  color: @color;
 
-    .btn-default {
-        background-color: fade(@color, 95%);
-        .customBorder;
-        margin-top: 10px;
-        &:hover {
-            background-color: @color;
-        }
+  .btn-default {
+    background-color: fade(@color, 95%);
+    .customBorder;
+    margin-top: 10px;
+    &:hover {
+      background-color: @color;
     }
-    #author-home, #author-home a {
-        color: rgba(83, 175, 19, .6);
-        margin-top: 6em;
-        font-size: 1em;
-    }
+  }
+  #author-home,
+  #author-home a {
+    color: rgba(83, 175, 19, 0.6);
+    margin-top: 6em;
+    font-size: 1em;
+  }
 } // END JUMBOTRON
