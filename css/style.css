@@ -75,10 +75,9 @@ body {
 }
 #form {
   color: #53af13;
-  width: 565px;
+  width: 100%;
   background-color: black;
   padding: 0px 15px 15px 15px;
-  margin: auto;
 }
 #form #guessInput {
   border-color: grey;
@@ -91,10 +90,9 @@ body {
   background-size: cover;
   font-size: 1.5em;
   margin-right: 5px;
-  margin-bottom: 0;
-  height: 58px;
-  width: 427px;
-  display: inline-block;
+  margin-bottom: 10px;
+  height: 50px;
+  width: 95px;
 }
 #form #fireButton {
   background: url('../media/fire.jpg') no-repeat;
@@ -118,7 +116,6 @@ HOME SCREEN STYLES
   background: url("../media/board.jpg") no-repeat;
   background-size: 100%;
   background-position: center center;
-  height: 100vh;
 }
 .jumbotron {
   margin-top: 50px;
