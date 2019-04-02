@@ -1,7 +1,7 @@
 # BattleBanana
 Battleship style game inspired by tutorial from [Head First Javascript Programming](https://www.amazon.com/Head-First-JavaScript-Programming-Brain-Friendly/dp/144934013X). 
 
-# [Play BattleBanana](https://github.com/awilsongithub/battleship-game)
+# [Play BattleBanana](http://battlebanana.herokuapp.com/game.html)
 
 # Improvement ideas
 TODO display num guesses or missile row. limit before game over
