@@ -1,0 +1,158 @@
+/*
+=====================================================
+LESS VARIABLES AND MIXINS
+=====================================================
+*/
+.controlPanelStyles {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+}
+/*
+=====================================================
+GAME SCREEN STYLES (AND SOME UNIVERSAL STYLES)
+=====================================================
+*/
+body {
+  background-color: black;
+  font-family: "Special Elite", cursive;
+  color: #53af13;
+}
+.game-container {
+  width: 1200px;
+  margin: auto;
+  background: black;
+  border: 1px solid green;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.controls {
+  width: 400px;
+  border: 1px solid green;
+  display: inline-block;
+  float: left;
+  margin-top: 40px;
+  padding: 10px;
+}
+.board {
+  float: left;
+  width: 690px;
+  height: 645px;
+  background: url("../media/board_modified.jpeg") no-repeat;
+  background-size: contain;
+}
+.board table {
+  width: 532px;
+  cursor: crosshair;
+  position: absolute;
+  left: 77px;
+  top: 44px;
+  border-spacing: 0px;
+}
+.board table td {
+  width: 76px;
+  height: 76.6px;
+}
+.board table td:hover {
+  background-color: rgba(83, 175, 19, 0.4);
+}
+.board table .hit {
+  background: url("../media/banana.png") no-repeat center center;
+}
+.board table .miss {
+  background: url("../media/miss.png") no-repeat center center;
+}
+.board #author {
+  color: rgba(83, 175, 19, 0.6);
+  font-size: 0.9em;
+  margin-top: 0;
+  padding-top: 1em;
+  margin-left: 137px;
+}
+.board #author a,
+.board #author-home a {
+  color: rgba(83, 175, 19, 0.6);
+  text-decoration: none;
+}
+#messageArea {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+  border-style: inset;
+  font-size: 1.75em;
+  line-height: 110%;
+  background: url("../media/monitor.png") no-repeat;
+  background-size: cover;
+  height: 120px;
+  padding: 15px;
+}
+form {
+  color: #53af13;
+}
+form #guessInput {
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #53af13;
+  border-style: inset;
+  background: url("../media/monitor.png") no-repeat;
+  background-size: cover;
+  font-size: 2.5em;
+  font-weight: bold;
+  height: 58px;
+  display: inline-block;
+  width: 72%;
+}
+form #fireButton {
+  background: url("../media/fire.jpg") no-repeat;
+  background-size: cover;
+  width: 95px;
+  height: 56px;
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  width: 25%;
+  display: inline-block;
+}
+/*
+=====================================================
+HOME SCREEN STYLES
+=====================================================
+*/
+.home-background {
+  background: url("../media/board.jpg") no-repeat;
+  background-size: 100%;
+  background-position: center center;
+}
+.jumbotron {
+  margin-top: 50px;
+  background-color: black;
+  color: #53af13;
+}
+.jumbotron .btn-default {
+  background-color: rgba(83, 175, 19, 0.95);
+  border-color: grey;
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+.jumbotron .btn-default:hover {
+  background-color: #53af13;
+}
+.jumbotron #author-home,
+.jumbotron #author-home a {
+  color: rgba(83, 175, 19, 0.6);
+  margin-top: 6em;
+  font-size: 1em;
+}
+
+/*# sourceMappingURL=style.css.map */
